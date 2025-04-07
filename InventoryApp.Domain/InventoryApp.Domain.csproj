@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Events\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Events\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
+</Project>

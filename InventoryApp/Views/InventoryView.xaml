@@ -1,0 +1,44 @@
+﻿<Window x:Class="InventoryApp.Views.InventoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:InventoryApp.Views"    
+    mc:Ignorable="d"
+    Title="Inventory Management" Height="650" Width="1000"
+    Icon="\Images\Inventory.png"
+    Name="mainwindow">
+
+    <Grid Background="#F5F5F5">
+        <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+            
+            <Label Content="Name" Margin="39,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25"/>
+            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="89,25,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#E0E0E0" />
+
+            <Label Content="Stock Status" Margin="314,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25"/>
+            <ComboBox Name="StockStatusComboBox" Height="30" Width="200" Margin="390,24,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#E0E0E0"
+                      SelectionChanged="StockStatusComboBox_SelectionChanged">
+                <ComboBoxItem Content="All" IsSelected="True" />
+                <ComboBoxItem Content="In Stock" />
+                <ComboBoxItem Content="Low Stock" />
+            </ComboBox>
+
+
+            <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowCreateNewCommand}" Content="➕ Add Item" Background="#212143" Foreground="White" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,120,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
+            <!--<Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowEditCommand}" IsEnabled="{Binding CanEdit}" Content="🖊️ Edit Item" Background="#212143" Foreground="White" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />-->
+            <Button Height="30" CommandParameter="{x:Reference Name= mainwindow}" Command="{Binding ShowEditCommand}" Content="🖊️ Edit Item" Background="#212143" Foreground="White" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
+            
+            <ListView Name="Items" ItemsSource="{Binding InventoryItems}" SelectedItem="{Binding SelectedItem}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Category}" Header="Category"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding StockQuantity}" Header="Stock"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding LastUpdated}" Header="Last Updated"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Window>
